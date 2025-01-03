@@ -1,0 +1,301 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+    background: radial-gradient(circle, #000000 60%, #001f1f);
+    color: #fff;
+}
+.back-home-button {
+    position: absolute;
+    top: 20px;  
+    left: 20px; 
+    z-index: 10; 
+  }
+  
+  .back-home-button button {
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .back-home-button button:hover {
+    transform: scale(1.1); 
+  }
+  
+  .back-home-button button svg {
+    margin-right: 10px;
+    font-size: 1.5rem;
+  }
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.player-sign {
+    text-align: left;
+}
+
+.player-sign h2 {
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
+
+.player-x {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.player-o {
+    color: #ff758c;
+    text-shadow: 0 0 10px #ff758c, 0 0 20px #ff758c;
+}
+
+.game-status {
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cell.filled {
+    cursor: not-allowed;
+}
+
+.cell:hover:not(.filled) {
+    background: rgba(0, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.reset-button {
+    background: #00ffff;
+    color: #000;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff;
+}
+
+.reset-button:hover {
+    background: #008080;
+    color: #fff;
+}
+.name-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle, #000000 60%, #001f1f);
+    color: #fff;
+    
+}
+
+.name-container h1 {
+    font-size: 2.5rem;
+    color: #00ffff;
+    margin-bottom: 20px;
+    text-shadow: 
+        0 0 1px rgba(0, 255, 255, 0.8), 
+        0 0 2px rgba(0, 255, 255, 0.6), 
+        0 0 3px rgba(0, 255, 255, 0.4);
+}
+
+.name-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.name-form input {
+    width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #00ffff;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    outline: none;
+}
+
+.submit-button {
+    background: #00ffff;
+    color: #000;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 2px #00ffff, 0 0 4px #00ffff;
+}
+
+.submit-button:hover {
+    background: #008080;
+    color: #fff;
+}
+.game-status {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(0, 255, 255, 0.2);
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+    }
+
+    .status-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .player-sign {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .player-sign h2 {
+        font-size: 1.2rem;
+    }
+
+    .game-status {
+        font-size: 1.2rem;
+    }
+
+    .board {
+        grid-template-columns: repeat(3, 80px);
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+    }
+
+    .reset-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .back-home-button {
+        top: 10px;
+        left: 10px;
+    }
+
+    .name-container h1 {
+        font-size: 2rem;
+    }
+
+    .name-form input {
+        width: 250px;
+    }
+
+    .submit-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 480px) {
+    .game-container {
+        padding: 5px;
+    }
+
+    .status-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .player-sign {
+        text-align: center;
+    }
+
+    .player-sign h2 {
+        font-size: 1rem;
+    }
+
+    .game-status {
+        font-size: 1rem;
+    }
+
+    .board {
+        grid-template-columns: repeat(3, 70px);
+    }
+
+    .cell {
+        width: 70px;
+        height: 70px;
+        font-size: 1.2rem;
+    }
+
+    .reset-button {
+        font-size: 0.8rem;
+        padding: 7px 12px;
+    }
+
+    .back-home-button {
+        top: 5px;
+        left: 5px;
+    }
+
+    .name-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .name-form input {
+        width: 220px;
+    }
+
+    .submit-button {
+        font-size: 0.8rem;
+        padding: 7px 12px;
+    }
+}
