@@ -13,7 +13,7 @@ export const Home = () => {
             <Link to="/playervsplayer">
               <button className="home-button">Player Vs Player</button>
             </Link>
-            <Link to="/computer">
+            <Link to="/playervscomputer">
               <button className="home-button">Player Vs Computer</button>
             </Link>
           </div>

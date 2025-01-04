@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import "../Css/PlayerVsPlayer.css";
 
 export const PlayerVsPlayer = () => {
@@ -9,6 +9,10 @@ export const PlayerVsPlayer = () => {
   const [winner, setWinner] = useState(null);
   const [playerNames, setPlayerNames] = useState({ player1: "", player2: "" });
   const [isNameSubmitted, setIsNameSubmitted] = useState(false);
+  const [gamesPlayed, setGamesPlayed] = useState(0);
+  const [player1Wins, setPlayer1Wins] = useState(0);
+  const [player2Wins, setPlayer2Wins] = useState(0);
+  const [draws, setDraws] = useState(0);
 
   const handleClick = (index) => {
     if (board[index] || winner) return;
@@ -21,6 +25,18 @@ export const PlayerVsPlayer = () => {
     const gameWinner = calculateWinner(newBoard);
     if (gameWinner) {
       setWinner(gameWinner);
+      handleGameEnd(gameWinner);
+    }
+  };
+
+  const handleGameEnd = (gameWinner) => {
+    setGamesPlayed((prev) => prev + 1);
+    if (gameWinner === "X") {
+      setPlayer1Wins((prev) => prev + 1);
+    } else if (gameWinner === "O") {
+      setPlayer2Wins((prev) => prev + 1);
+    } else if (gameWinner === "Draw") {
+      setDraws((prev) => prev + 1);
     }
   };
 
@@ -61,14 +77,23 @@ export const PlayerVsPlayer = () => {
     setIsNameSubmitted(true);
   };
 
+  const getStatusMessage = () => {
+    if (winner) {
+      if (winner === "Draw") {
+        return "It's a Draw!";
+      }
+      return `Winner: ${
+        winner === "X" ? `${playerNames.player1} (X)` : `${playerNames.player2} (O)`
+      }`;
+    }
+    return `Next Turn: ${
+      isXNext ? `${playerNames.player1} (X)` : `${playerNames.player2} (O)`
+    }`;
+  };
+
   if (!isNameSubmitted) {
     return (
       <div className="name-container">
-        <Link to="/" className="back-home-button">
-            <button>
-                <KeyboardArrowLeftIcon />
-            </button>
-        </Link>
         <h1>Enter Player Names</h1>
         <form onSubmit={handleNameSubmit} className="name-form">
           <input
@@ -97,29 +122,8 @@ export const PlayerVsPlayer = () => {
     );
   }
 
-  const getStatusMessage = () => {
-    if (winner) {
-      if (winner === "Draw") {
-        return "It's a Draw!";
-      }
-      return `Winner: ${
-        winner === "X" ? `${playerNames.player1} (X)` : `${playerNames.player2} (O)`
-      }`;
-    }
-    return `Next Turn: ${
-      isXNext ? `${playerNames.player1} (X)` : `${playerNames.player2} (O)`
-    }`;
-  };
-
   return (
     <div className="game-container">
-      {/* Back to Home Button */}
-      <Link to="/" className="back-home-button">
-        <button>
-          <KeyboardArrowLeftIcon />
-        </button>
-      </Link>
-
       <div className="status-container">
         <div className="player-sign">
           <h2>{playerNames.player1}: <span className="player-x">X</span></h2>
@@ -134,13 +138,24 @@ export const PlayerVsPlayer = () => {
             className={`cell ${cell ? "filled" : ""}`}
             onClick={() => handleClick(index)}
           >
-            {cell}
+            {cell && <span className={cell === "X" ? "x" : "o"}>{cell}</span>}
           </div>
         ))}
       </div>
       <button className="reset-button" onClick={resetGame}>
         Reset Game
       </button>
+      <Link to="/" className="back-home-button">
+        <button>
+          <KeyboardArrowLeftIcon />
+        </button>
+      </Link>
+      <div className="game-statistics">
+        <p>Total Games Played: {gamesPlayed}</p>
+        <p>{playerNames.player1}'s Wins: {player1Wins}</p>
+        <p>{playerNames.player2}'s Wins: {player2Wins}</p>
+        <p>Draws: {draws}</p>
+      </div>
     </div>
   );
 };
