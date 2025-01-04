@@ -94,6 +94,11 @@ export const PlayerVsPlayer = () => {
   if (!isNameSubmitted) {
     return (
       <div className="name-container">
+        <Link to="/" className="back-home-button">
+        <button>
+          <KeyboardArrowLeftIcon />
+        </button>
+      </Link>
         <h1>Enter Player Names</h1>
         <form onSubmit={handleNameSubmit} className="name-form">
           <input
